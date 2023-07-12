@@ -1,6 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './FeedbackWidget.module.css';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
+import Statistics from '../Statistics/Statistics';
+import Section from '../Section/Section';
+import Notification from '../Notification/Notification';
+
 
 class FeedbackWidget extends React.Component {
   state = {
@@ -43,82 +46,5 @@ class FeedbackWidget extends React.Component {
     );
   }
 }
-
-class FeedbackOptions extends React.Component {
-  render() {
-    const { options, onLeaveFeedback } = this.props;
-
-    return (
-      <div>
-        {options.map((option) => (
-          <button
-            key={option}
-            className={styles.button}
-            onClick={() => onLeaveFeedback(option)}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
-    );
-  }
-}
-
-class Statistics extends React.Component {
-  render() {
-    const { good, neutral, bad, total, positivePercentage } = this.props;
-
-    return (
-      <div>
-        <div>Good: {good}</div>
-        <div>Neutral: {neutral}</div>
-        <div>Bad: {bad}</div>
-        <div>Total Feedback: {total}</div>
-        <div>Positive Feedback Percentage: {positivePercentage}%</div>
-      </div>
-    );
-  }
-}
-
-class Section extends React.Component {
-  render() {
-    const { title, children } = this.props;
-
-    return (
-      <div>
-        <h2 className={styles.title}>{title}</h2>
-        {children}
-      </div>
-    );
-  }
-}
-
-class Notification extends React.Component {
-  render() {
-    return <div className={styles.notification}>{this.props.message}</div>;
-  }
-}
-
-FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onLeaveFeedback: PropTypes.func.isRequired,
-};
-
-Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.number.isRequired,
-};
-
-Section.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-};
-
-Notification.propTypes = {
-  message: PropTypes.string.isRequired,
-};
 
 export default FeedbackWidget;
