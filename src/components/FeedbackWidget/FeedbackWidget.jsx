@@ -26,7 +26,7 @@ class FeedbackWidget extends React.Component {
     return (
       <div>
         <Section title="Give Feedback">
-          <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handleFeedback} />
+        <FeedbackOptions options={ Object.keys({good, neutral, bad})} onLeaveFeedback={this.handleFeedback} />
         </Section>
 
         <Section title="Statistics">
